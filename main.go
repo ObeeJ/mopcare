@@ -13,89 +13,85 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/joho/godotenv"
+	_ "github.com/lib/pq"
 )
 
 func main() {
-    // Establish database connection
-    db, err := connectDB()
-    if err != nil {
-        log.Fatalf("Database connection failed: %v", err)
-    }
-    defer db.Close()
+	db, err := connectDB()
+	if err != nil {
+		log.Fatalf("Database connection failed: %v", err)
+	}
+	defer db.Close()
 
-    // Initialize Gin router
-    router := gin.Default()
-    router.SetTrustedProxies([]string{"127.0.0.1"})
+	router := gin.Default()
+	router.SetTrustedProxies([]string{"127.0.0.1"})
 
-    // Middleware to set database connection in context
-    router.Use(func(c *gin.Context) {
-        c.Set("db", db)
-        c.Next()
-    })
+	router.Use(func(c *gin.Context) {
+		c.Set("db", db)
+		c.Next()
+	})
 
-    // Course routes
-    router.POST("/courses", createCourse)
-    router.GET("/courses", getCourses)
-    router.GET("/courses/:id", getCourse)
-    router.PUT("/courses/:id", updateCourse)
-    router.DELETE("/courses/:id", deleteCourse)
+	// Course routes
+	router.POST("/courses", createCourse)
+	router.GET("/courses", getCourses)
+	router.GET("/courses/:id", getCourse)
+	router.PUT("/courses/:id", updateCourse)
+	router.DELETE("/courses/:id", deleteCourse)
 
-    // Series routes
-    router.GET("/courses/:id/series", getSeriesForCourse)
-    router.GET("/series/:id", getSeriesByID)
-    router.POST("/courses/:id/series", createSeriesForCourse)
-    router.PUT("/series/:id", updateSeries)
-    router.DELETE("/series/:id", deleteSeries)
+	// Series routes
+	router.GET("/courses/:id/series", getSeriesForCourse)
+	router.GET("/series/:id", getSeriesByID)
+	router.POST("/courses/:id/series", createSeriesForCourse)
+	router.PUT("/series/:id", updateSeries)
+	router.DELETE("/series/:id", deleteSeries)
 
-    // User routes
-    router.GET("/users", getUsers)
-    router.GET("/users/:id", getUser)
-    router.POST("/users", createUser)
-    router.DELETE("/users/:id", deleteUser)
+	// User routes
+	router.GET("/users", getUsers)
+	router.GET("/users/:id", getUser)
+	router.POST("/users", createUser)
+	router.DELETE("/users/:id", deleteUser)
 
-    // Enrollment routes
-    router.GET("/users/:id/enrollments", getUserEnrollments)
-    router.POST("/users/:id/enrollments", createUserEnrollment)
-    router.DELETE("/enrollments/:id", deleteUserEnrollment)
+	// Enrollment routes
+	router.GET("/users/:id/enrollments", getUserEnrollments)
+	router.POST("/users/:id/enrollments", createUserEnrollment)
+	router.DELETE("/enrollments/:id", deleteUserEnrollment)
 
-    // Profile route
-    router.GET("/users/:id/profile", getUserProfile)
+	// Profile route
+	router.GET("/users/:id/profile", getUserProfile)
 
-    // Payment route
-    router.PUT("/users/:id/payment", updateUserPayment)
+	// Payment route
+	router.PUT("/users/:id/payment", updateUserPayment)
 
-    // Start the server with dynamic port
-    port := os.Getenv("PORT")
-    if port == "" {
-        port = "9090" // Default port for local testing
-    }
-    log.Printf("Starting server on port %s", port)
-    if err := router.Run(":" + port); err != nil {
-        log.Fatalf("Failed to start server: %v", err)
-    }
+	port := os.Getenv("PORT")
+	if port == "" {
+		port = "9090"
+	}
+	log.Printf("Starting server on port %s", port)
+	if err := router.Run(":" + port); err != nil {
+		log.Fatalf("Failed to start server: %v", err)
+	}
 }
 
-// connectDB establishes a connection to the Supabase database
 func connectDB() (*sql.DB, error) {
-    connStr := os.Getenv("SUPABASE_DB_URL")
-    if connStr == "" {
-        if err := godotenv.Load(); err != nil {
-            return nil, errors.New("supabase_db_url environment variable is not set and .env file not found")
-        }
-        connStr = os.Getenv("SUPABASE_DB_URL")
-        if connStr == "" {
-            return nil, errors.New("supabase_db_url not found in environment or .env")
-        }
-    }
-    db, err := sql.Open("postgres", connStr)
-    if err != nil {
-        return nil, fmt.Errorf("could not open database connection: %v", err)
-    }
-    if err = db.Ping(); err != nil {
-        return nil, fmt.Errorf("could not connect to database: %v", err)
-    }
-    fmt.Println("Database connection established successfully.")
-    return db, nil
+	connStr := os.Getenv("SUPABASE_DB_URL")
+	if connStr == "" {
+		if err := godotenv.Load(); err != nil {
+			return nil, errors.New("supabase_db_url environment variable is not set and .env file not found")
+		}
+		connStr = os.Getenv("SUPABASE_DB_URL")
+		if connStr == "" {
+			return nil, errors.New("supabase_db_url not found in environment or .env")
+		}
+	}
+	db, err := sql.Open("postgres", connStr)
+	if err != nil {
+		return nil, fmt.Errorf("could not open database connection: %v", err)
+	}
+	if err = db.Ping(); err != nil {
+		return nil, fmt.Errorf("could not connect to database: %v", err)
+	}
+	fmt.Println("Database connection established successfully.")
+	return db, nil
 }
 
 // createCourse handles the POST /courses endpoint to create a new course
