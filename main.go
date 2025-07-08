@@ -31,6 +31,15 @@ func main() {
 		c.Next()
 	})
 
+	// Root route for health checks
+	router.GET("/", func(c *gin.Context) {
+		c.JSON(http.StatusOK, gin.H{
+			"message": "Mopcare Learning & Course Management System API",
+			"status":  "running",
+			"version": "1.0.0",
+		})
+	})
+
 	// Course routes
 	router.POST("/courses", createCourse)
 	router.GET("/courses", getCourses)
