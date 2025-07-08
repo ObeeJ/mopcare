@@ -1,152 +1,101 @@
-# Mopcare Learning & Course Management System
+import React from "react";
 
-A comprehensive learning management system built with modern technologies, featuring course management, user enrollment, and integrated payment processing.
+const ReadmeComponent = () => { return ( <div className="p-6 max-w-4xl mx-auto text-gray-800"> <h1 className="text-3xl font-bold mb-4">📚 Mopcare Learning & Course Management API</h1> <p className="mb-6"> A modern, RESTful backend built with <strong>Go (Gin)</strong> for managing courses, series (episodes), users, and enrollments — complete with Supabase integration and ready for production deployment. </p> <div className="mb-6"> <span className="font-semibold">🔗 Live API Base URL:</span> <a
+href="https://go-gin-backend-t6d2.onrender.com"
+className="text-blue-600 underline ml-2"
+> https://go-gin-backend-t6d2.onrender.com </a> </div>
 
-## 🚀 Features
+<section className="mb-8">
+    <h2 className="text-xl font-semibold mb-2">🚀 Features</h2>
+    <ul className="list-disc list-inside">
+      <li>Full CRUD for Courses, Series, and Users</li>
+      <li>User enrollment system</li>
+      <li>Supabase Storage integration (for videos/images)</li>
+      <li>PostgreSQL database</li>
+      <li>Production-ready structure (Docker & .env)</li>
+      <li>RESTful API with clean endpoints</li>
+    </ul>
+  </section>
 
-- **Course Management**: Create, update, and manage courses with multimedia content
-- **Series & Episodes**: Organize course content into structured series with video lessons
-- **User Management**: Complete user registration, authentication, and profile management
-- **Enrollment System**: Track user course enrollments and progress
-- **Payment Integration**: Secure payment processing and transaction tracking
-- **File Upload**: Support for video and image uploads via Supabase Storage
-- **RESTful API**: Clean, well-documented API endpoints
+  <section className="mb-8">
+    <h2 className="text-xl font-semibold mb-2">🛠 Tech Stack</h2>
+    <ul className="list-disc list-inside">
+      <li>Go 1.24</li>
+      <li>Gin Framework</li>
+      <li>PostgreSQL via Supabase</li>
+      <li>Render (Cloud Deployment)</li>
+      <li>Supabase Auth & Storage</li>
+      <li>godotenv, uuid, pq</li>
+    </ul>
+  </section>
 
-## 🛠️ Tech Stack
+  <section className="mb-8">
+    <h2 className="text-xl font-semibold mb-2">📁 Project Structure</h2>
+    <pre className="bg-gray-100 p-4 rounded text-sm">
 
-### Backend
-- **Go 1.24** - High-performance backend language
-- **Gin Framework** - Fast HTTP web framework
-- **PostgreSQL** - Robust relational database
-- **Supabase** - Backend-as-a-Service for database and storage
+{.  ├── controllers/ ├── models/ ├── routes/ ├── utils/ ├── main.go ├── .env.example ├── go.mod └── README.md} </pre> </section>
 
-### Frontend Integration
-- **Supabase Auth** - User authentication and authorization
-- **Payment Processing** - Integrated payment collection system
+<section className="mb-8">
+    <h2 className="text-xl font-semibold mb-2">📦 Installation</h2>
+    <ol className="list-decimal list-inside">
+      <li>Clone the repository</li>
+      <pre className="bg-gray-100 p-2 rounded">
+        git clone https://github.com/ObeeJ/go-gin-backend.git
+        cd go-gin-backend
+      </pre>
+      <li>Install dependencies</li>
+      <pre className="bg-gray-100 p-2 rounded">go mod tidy</pre>
+      <li>Set up environment variables</li>
+      <pre className="bg-gray-100 p-2 rounded">cp .env.example .env</pre>
+      <li>Run the server</li>
+      <pre className="bg-gray-100 p-2 rounded">go run main.go</pre>
+    </ol>
+  </section>
 
-### DevOps & Deployment
-- **Render** - Cloud deployment platform
-- **GitHub Actions** - CI/CD pipeline automation
-- **Git** - Version control
+  <section className="mb-8">
+    <h2 className="text-xl font-semibold mb-2">🔗 Main Endpoints</h2>
+    <div className="space-y-3">
+      <div>
+        <strong>GET /</strong> – Health check
+      </div>
+      <div>
+        <strong>GET /courses</strong> – List all courses
+      </div>
+      <div>
+        <strong>POST /courses</strong> – Create a course
+      </div>
+      <div>
+        <strong>GET /courses/:id</strong> – Get specific course
+      </div>
+      <div>
+        <strong>PUT /courses/:id</strong> – Update course
+      </div>
+      <div>
+        <strong>DELETE /courses/:id</strong> – Delete course
+      </div>
+    </div>
+  </section>
 
-### Development Tools
-- **godotenv** - Environment variable management
-- **lib/pq** - PostgreSQL driver for Go
-- **google/uuid** - UUID generation
+  <section className="mb-8">
+    <h2 className="text-xl font-semibold mb-2">👤 Users & Enrollments</h2>
+    <ul className="list-disc list-inside">
+      <li>GET /users</li>
+      <li>POST /users</li>
+      <li>GET /users/:id</li>
+      <li>DELETE /users/:id</li>
+      <li>GET /users/:id/profile</li>
+      <li>GET /users/:id/enrollments</li>
+      <li>POST /users/:id/enrollments</li>
+      <li>DELETE /enrollments/:id</li>
+    </ul>
+  </section>
 
-## 📋 Prerequisites
+  <footer className="mt-10 border-t pt-4 text-sm text-gray-600">
+    Built with ❤️ by <a href="https://github.com/ObeeJ" className="text-blue-500">ObeeJ</a>
+  </footer>
+</div>
 
-- Go 1.24 or higher
-- PostgreSQL database
-- Supabase account
-- Render account (for deployment)
+); };
 
-## 🔧 Installation
+export default ReadmeComponent;
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/ObeeJ/go-gin-backend.git
-   cd go-gin-backend
-   ```
-
-2. **Install dependencies**
-   ```bash
-   go mod tidy
-   ```
-
-3. **Set up environment variables**
-   ```bash
-   cp .env.example .env
-   ```
-   Configure the following variables:
-   ```env
-   SUPABASE_DB_URL=your_supabase_database_url
-   SUPABASE_PROJECT_URL=your_supabase_project_url
-   SUPABASE_SERVICE_KEY=your_supabase_service_key
-   PORT=9090
-   ```
-
-4. **Run database migrations**
-   Execute the SQL schema in your Supabase dashboard or PostgreSQL client.
-
-5. **Start the application**
-   ```bash
-   go run main.go
-   ```
-
-## 🗄️ Database Schema
-
-The system uses four main tables:
-- `courses` - Course information and metadata
-- `series` - Course episodes and lessons
-- `users` - User profiles and data
-- `user_course_enrollments` - Enrollment tracking
-
-## 🔗 API Endpoints
-
-### Courses
-- `GET /courses` - List all courses
-- `POST /courses` - Create new course
-- `GET /courses/:id` - Get specific course
-- `PUT /courses/:id` - Update course
-- `DELETE /courses/:id` - Delete course
-
-### Series
-- `GET /courses/:id/series` - Get course series
-- `POST /courses/:id/series` - Create series for course
-- `GET /series/:id` - Get specific series
-- `PUT /series/:id` - Update series
-- `DELETE /series/:id` - Delete series
-
-### Users
-- `GET /users` - List users
-- `POST /users` - Create user
-- `GET /users/:id` - Get user profile
-- `DELETE /users/:id` - Delete user
-
-### Enrollments
-- `GET /users/:id/enrollments` - Get user enrollments
-- `POST /users/:id/enrollments` - Enroll user in course
-- `DELETE /enrollments/:id` - Remove enrollment
-
-## 🚀 Deployment
-
-The application is configured for automatic deployment on Render with GitHub Actions:
-
-1. **Push to main branch** triggers automatic deployment
-2. **Render** builds and deploys the application
-3. **Environment variables** are managed through Render dashboard
-
-## 🤝 Architecture
-
-- **Frontend**: Handles user interface, authentication (Supabase Auth), and payment collection
-- **Backend**: Manages business logic, data processing, and API endpoints
-- **Database**: PostgreSQL via Supabase for data persistence
-- **Storage**: Supabase Storage for file uploads
-
-## 📝 Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 👨‍💻 Author
-
-**ObeeJ** - [GitHub Profile](https://github.com/ObeeJ)
-
-## 🙏 Acknowledgments
-
-- Gin Framework community
-- Supabase team
-- Go community
-- Render platform
-
----
-
-**Mopcare Learning & Course Management System** - Empowering education through technology.
