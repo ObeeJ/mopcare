@@ -1,44 +1,4 @@
-<!DOCTYPE html><html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mopcare LMS</title>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
-  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
-  <style>
-    body {
-      font-family: 'Inter', sans-serif;
-      line-height: 1.6;
-      margin: 2rem auto;
-      max-width: 900px;
-      padding: 0 1rem;
-      color: #1e293b;
-    }
-    h1, h2, h3 {
-      color: #1e3a8a;
-    }
-    code, pre {
-      background: #f3f4f6;
-      padding: 0.25rem 0.5rem;
-      border-radius: 4px;
-      font-family: monospace;
-    }
-    .icon {
-      margin-right: 0.5rem;
-      color: #10b981;
-    }
-    .tech-stack i {
-      font-size: 1.25rem;
-      margin-right: 0.25rem;
-      color: #6366f1;
-    }
-    ul {
-      padding-left: 1rem;
-    }
-  </style>
-</head>
-<body>
-  <h1><i class="fas fa-graduation-cap icon"></i> Mopcare Learning & Course Management System</h1>
+ <h1><i class="fas fa-graduation-cap icon"></i> Mopcare Learning & Course Management System</h1>
   <p>A comprehensive LMS built with modern technologies for course management, enrollments, and payments.</p>  <h2><i class="fas fa-bolt icon"></i> Features</h2>
   <ul>
     <li>Course & Series Management with video support</li>
