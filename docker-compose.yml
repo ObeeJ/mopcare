@@ -1,0 +1,53 @@
+
+
+services:
+  gateway:
+    build:
+      context: ./gateway-fiber
+      dockerfile: Dockerfile
+    ports:
+      - "9090:9090"
+    environment:
+      - GATEWAY_PORT=9090
+      - COURSE_SERVICE_URL=http://course-service:8081
+      - USER_SERVICE_URL=http://user-service:8082
+      - ENROLLMENT_SERVICE_URL=http://enrollment-service:8083
+    depends_on:
+      - course-service
+      - user-service
+      - enrollment-service
+
+
+
+  course-service:
+    build:
+      context: ./services/course-service
+      dockerfile: Dockerfile
+    ports:
+      - "8081:8081"
+    env_file:
+      - .env
+    environment:
+      - COURSE_SERVICE_PORT=8081
+
+  user-service:
+    build:
+      context: ./services/user-service
+      dockerfile: Dockerfile
+    ports:
+      - "8082:8082"
+    env_file:
+      - .env
+    environment:
+      - USER_SERVICE_PORT=8082
+
+  enrollment-service:
+    build:
+      context: ./services/enrollment-service
+      dockerfile: Dockerfile
+    ports:
+      - "8083:8083"
+    env_file:
+      - .env
+    environment:
+      - ENROLLMENT_SERVICE_PORT=8083

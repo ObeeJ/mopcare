@@ -1,11 +1,15 @@
 services:
   - type: web
-    name: go-gin-app
+    name: mopcare-gateway
     runtime: go
-    buildCommand: go build -o app
-    startCommand: ./app
+    buildCommand: cd gateway-fiber && go build -o app
+    startCommand: cd gateway-fiber && ./app
     envVars:
       - key: SUPABASE_DB_URL
-        fromDatabase:
-          name: supabase-db
-          property: connectionString
+        sync: false
+      - key: SUPABASE_PROJECT_URL
+        sync: false
+      - key: SUPABASE_SERVICE_KEY
+        sync: false
+      - key: GATEWAY_PORT
+        value: "9090"

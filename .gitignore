@@ -1,22 +1,33 @@
-# Environment variables
+# Environment files - NEVER COMMIT THESE
 .env
-.env.local
-.env.production
+.env.*
+*.env
 
-# Build artifacts
-app
+# Go build artifacts
 *.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+go.work
 
-# Go build cache
-go.sum
+# Dependency directories
+vendor/
 
 # IDE files
 .vscode/
 .idea/
+*.swp
+*.swo
 
 # OS files
 .DS_Store
 Thumbs.db
+
+# Docker
+.dockerignore
 
 # Logs
 *.log

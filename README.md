@@ -1,70 +1,152 @@
- <h1><i class="fas fa-graduation-cap icon"></i> Mopcare Learning & Course Management System</h1>
-  <p>A comprehensive LMS built with modern technologies for course management, enrollments, and payments.</p>  <h2><i class="fas fa-bolt icon"></i> Features</h2>
-  <ul>
-    <li>Course & Series Management with video support</li>
-    <li>User Authentication & Profile System</li>
-    <li>Enrollment & Progress Tracking</li>
-    <li>Payment Integration</li>
-    <li>Supabase File Uploads</li>
-    <li>RESTful API with clear documentation</li>
-  </ul>  <h2><i class="fas fa-cogs icon"></i> Tech Stack</h2>
-  <h3>Backend</h3>
-  <ul class="tech-stack">
-    <li><i class="fab fa-golang"></i> Go 1.24</li>
-    <li><i class="fas fa-fire"></i> Gin Framework</li>
-    <li><i class="fas fa-database"></i> PostgreSQL</li>
-    <li><i class="fas fa-cloud"></i> Supabase</li>
-  </ul>  <h3>Frontend Integration</h3>
-  <ul class="tech-stack">
-    <li><i class="fas fa-lock"></i> Supabase Auth</li>
-    <li><i class="fas fa-credit-card"></i> Payment Gateway</li>
-  </ul>  <h3>Deployment</h3>
-  <ul class="tech-stack">
-    <li><i class="fab fa-github"></i> GitHub Actions</li>
-    <li><i class="fas fa-server"></i> Render</li>
-  </ul>  <h2><i class="fas fa-tools icon"></i> Setup Instructions</h2>
-  <ol>
-    <li>Clone the repository:<br><code>git clone https://github.com/ObeeJ/go-gin-backend.git</code></li>
-    <li>Navigate into the project:<br><code>cd go-gin-backend</code></li>
-    <li>Install dependencies:<br><code>go mod tidy</code></li>
-    <li>Configure <code>.env</code> using <code>.env.example</code>:</li>
-    <pre><code>SUPABASE_DB_URL=...
-SUPABASE_PROJECT_URL=...
-SUPABASE_SERVICE_KEY=...
-PORT=9090</code></pre>
-    <li>Run migrations & start the app:<br><code>go run main.go</code></li>
-  </ol>  <h2><i class="fas fa-route icon"></i> API Endpoints</h2>
-  <h3>System</h3>
-  <ul>
-    <li><code>GET /</code> - Health check</li>
-  </ul>  <h3>Courses</h3>
-  <ul>
-    <li><code>GET /courses</code> - List all courses</li>
-    <li><code>POST /courses</code> - Create new course</li>
-    <li><code>GET /courses/:id</code> - View course</li>
-    <li><code>PUT /courses/:id</code> - Update course</li>
-    <li><code>DELETE /courses/:id</code> - Delete course</li>
-  </ul>  <h3>Series</h3>
-  <ul>
-    <li><code>GET /courses/:id/series</code> - List series in course</li>
-    <li><code>POST /courses/:id/series</code> - Create series</li>
-    <li><code>GET /series/:id</code> - View series</li>
-    <li><code>PUT /series/:id</code> - Update series</li>
-    <li><code>DELETE /series/:id</code> - Delete series</li>
-  </ul>  <h3>Users</h3>
-  <ul>
-    <li><code>GET /users</code> - List all users</li>
-    <li><code>POST /users</code> - Create new user</li>
-    <li><code>GET /users/:id</code> - View user</li>
-    <li><code>DELETE /users/:id</code> - Delete user</li>
-  </ul>  <h3>Enrollments</h3>
-  <ul>
-    <li><code>GET /users/:id/enrollments</code> - View user's enrollments</li>
-    <li><code>POST /users/:id/enrollments</code> - Enroll in course</li>
-    <li><code>DELETE /enrollments/:id</code> - Remove enrollment</li>
-  </ul>  <h3>Payments</h3>
-  <ul>
-    <li><code>PUT /users/:id/payment</code> - Update payment info</li>
-  </ul>  <p style="margin-top:2rem;"><strong>Base URL:</strong> <a href="https://go-gin-backend-t6d2.onrender.com" target="_blank">https://go-gin-backend-t6d2.onrender.com</a></p>
-</body>
-</html>
+# 🚀 Mopcare Learning & Course Management System
+
+A modern microservices-based LMS built with Go Fiber, featuring intelligent API gateway, caching, and comprehensive course management.
+
+## ✨ Architecture
+
+```
+┌─────────────────┐    ┌──────────────────┐    ┌─────────────────┐
+│   Client App    │───▶│  API Gateway     │───▶│  Microservices  │
+└─────────────────┘    │  (Go/Fiber)      │    └─────────────────┘
+                       │                  │
+                       │ • Caching        │
+                       │ • Load Balancing │
+                       │ • Metrics        │
+                       │ • Health Checks  │
+                       └──────────────────┘
+```
+
+## 🏗️ Services
+
+### API Gateway (Port 9090)
+- **Intelligent Routing** - Routes requests to appropriate microservices
+- **Caching** - Sub-second response times for GET requests
+- **Metrics** - Real-time performance analytics
+- **Health Monitoring** - Service availability tracking
+
+### Course Service (Port 8081)
+- Course & Series Management
+- PostgreSQL database integration
+- CRUD operations for courses and series
+
+### User Service (Port 8082)
+- User Authentication & Profiles
+- Payment tracking
+- User analytics
+
+### Enrollment Service (Port 8083)
+- Course enrollments
+- Progress tracking
+- Completion status
+
+## 🚀 Quick Start
+
+### Development
+```bash
+# Start all services
+run-services.bat
+
+# Or manually:
+cd services/course-service && go run main.go
+cd services/user-service && go run main.go  
+cd services/enrollment-service && go run main.go
+cd gateway-fiber && go run main.go
+```
+
+### Production (Docker)
+```bash
+docker-compose up --build
+```
+
+## 📡 API Endpoints
+
+**Base URL:** `http://localhost:9090`
+
+### System
+- `GET /health` - Gateway health check
+- `GET /metrics` - Performance metrics
+
+### Courses
+- `GET /courses` - List all courses
+- `POST /courses` - Create new course
+- `GET /courses/:id` - View course
+- `PUT /courses/:id` - Update course
+- `DELETE /courses/:id` - Delete course
+
+### Series
+- `GET /courses/:id/series` - List series in course
+- `POST /courses/:id/series` - Create series
+- `GET /series/:id` - View series
+- `PUT /series/:id` - Update series
+- `DELETE /series/:id` - Delete series
+
+### Users
+- `GET /users` - List all users
+- `POST /users` - Create new user
+- `GET /users/:id` - View user
+- `DELETE /users/:id` - Delete user
+- `PUT /users/:id/payment` - Update payment info
+
+### Enrollments
+- `GET /users/:id/enrollments` - View user's enrollments
+- `POST /users/:id/enrollments` - Enroll in course
+- `DELETE /enrollments/:id` - Remove enrollment
+
+## 🔧 Configuration
+
+Create `.env` file with:
+```env
+SUPABASE_DB_URL=your_database_connection_string
+SUPABASE_PROJECT_URL=your_supabase_project_url  
+SUPABASE_SERVICE_KEY=your_supabase_service_key
+GATEWAY_PORT=9090
+```
+
+## 📊 Performance Metrics
+
+Access real-time metrics at: `GET /metrics`
+
+```json
+{
+  "gateway": {
+    "total_requests": 1000,
+    "cache_hits": 300,
+    "cache_misses": 700
+  }
+}
+```
+
+## 🛡️ Security
+
+- Environment variables for sensitive data
+- PostgreSQL database connections
+- Input validation and error handling
+- Secure service-to-service communication
+
+## 🏭 Production Deployment
+
+- **Docker** - Multi-stage builds for optimization
+- **Render** - Cloud deployment ready
+- **Health Checks** - Automatic service monitoring  
+- **Caching** - Improved response times
+- **Metrics** - Performance monitoring
+
+## 📁 Project Structure
+
+```
+├── gateway-fiber/           # API Gateway (Fiber)
+├── services/
+│   ├── course-service/      # Course management
+│   ├── user-service/        # User management
+│   └── enrollment-service/  # Enrollment management
+├── docker-compose.yml       # Container orchestration
+├── run-services.bat         # Development startup script
+├── render.yaml             # Render deployment config
+└── README.md               # This file
+```
+
+## 🔗 Links
+
+- **Live API:** [https://go-gin-backend-t6d2.onrender.com](https://go-gin-backend-t6d2.onrender.com)
+- **Health Check:** `GET /health`
+- **Metrics:** `GET /metrics`
