@@ -103,9 +103,12 @@ func main() {
 
 	app.Use(proxyHandler)
 
-	port := os.Getenv("GATEWAY_PORT")
+	port := os.Getenv("PORT")
 	if port == "" {
-		port = "9090"
+		port = os.Getenv("GATEWAY_PORT")
+		if port == "" {
+			port = "10000"
+		}
 	}
 
 	fmt.Printf("🚀 Fiber Gateway starting on port %s\n", port)
