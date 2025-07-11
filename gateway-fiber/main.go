@@ -135,8 +135,8 @@ func proxyHandler(c *fiber.Ctx) error {
 		enrollmentServiceURL = "http://localhost:8083"
 	}
 
-	// For Render deployment, return mock responses since services aren't running
-	if os.Getenv("RENDER") != "" {
+	// Auto-detect Render deployment and return mock responses
+	if os.Getenv("RENDER_SERVICE_ID") != "" || os.Getenv("RENDER") != "" {
 		return handleMockResponse(c, path, method)
 	}
 
