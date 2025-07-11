@@ -147,6 +147,6 @@ Access real-time metrics at: `GET /metrics`
 
 ## 🔗 Links
 
-- **Live API:** [https://go-gin-backend-t6d2.onrender.com](https://go-gin-backend-t6d2.onrender.com)
+- **Live API:** [https://mopcare-x0vw.onrender.com/](https://mopcare-x0vw.onrender.com/)
 - **Health Check:** `GET /health`
 - **Metrics:** `GET /metrics`
