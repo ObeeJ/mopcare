@@ -1,10 +1,10 @@
 FROM golang:1.21-alpine AS builder
 
 WORKDIR /app
-COPY go.mod go.sum ./
+COPY gateway-fiber/go.mod gateway-fiber/go.sum ./
 RUN go mod download
 
-COPY . .
+COPY gateway-fiber/ .
 RUN go build -o gateway-fiber .
 
 FROM alpine:latest
