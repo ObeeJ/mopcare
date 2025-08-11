@@ -20,8 +20,31 @@
 
 ## 🏗️ Architecture Overview
 
-┌─────────────────────┐         ┌─────────────────────────┐         ┌─────────────────────────┐ │     Client App      │ ─────▶  │      API Gateway        │ ─────▶  │      Microservices       │ │  (Web, Mobile UI)   │         │     (Go Fiber / Gin)    │         │  ┌─────────────────────┐│ └─────────────────────┘         │ • Request Routing       │         │  │ Course Service       ││ │ • Caching & Load Balancing│        │  │ (Go Fiber)           ││ │ • Health Checks & Metrics │        │  ├─────────────────────┤│ └─────────────────────────┘         │  │ User Service         ││ │  │ (Go Gin)             ││ │  ├─────────────────────┤│ │  │ Enrollment Service   ││ │  │ (Go Fiber)           ││ │  └─────────────────────┘│ └─────────────────────────┘
-
++----------------------+
+           |   Client Applications |  ← (Web, Mobile, Admin UI)
+           +----------+-----------+
+                      |
+                      v
+          +-------------------------+
+          |      API Gateway         |  (Go Fiber)
+          |  • Request Routing       |
+          |  • Caching               |
+          |  • Load Balancing        |
+          |  • Health Checks         |
+          |  • Metrics & Logging     |
+          +-----------+-------------+
+                      |
+    +-----------------+--------------------+
+    |                  |                   |
+    v                  v                   v
++-----------+    +-------------+     +--------------+
+| Course    |    | User        |     | Enrollment   |
+| Service   |    | Service     |     | Service      |
+| (Go Fiber)|    | (Go Gin)    |     | (Go Fiber)   |
+| - Courses |    | - Auth via  |     | - Enrollment |
+| - Series  |    |   Supabase  |     | - Progress   |
+| - CRUD    |    | - Profiles  |     | - Completion |
++-----------+    +-------------+     +--------------+
 ---
 
 ## 🛠️ Services
