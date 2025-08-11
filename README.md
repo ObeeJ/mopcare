@@ -20,6 +20,7 @@
 
 ## 🏗️ Architecture Overview
 
+
 +----------------------+
            |   Client Applications |  ← (Web, Mobile, Admin UI)
            +----------+-----------+
@@ -45,6 +46,7 @@
 | - Series  |    |   Supabase  |     | - Progress   |
 | - CRUD    |    | - Profiles  |     | - Completion |
 +-----------+    +-------------+     +--------------+
+
 ---
 
 ## 🛠️ Services
