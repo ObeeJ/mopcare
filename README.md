@@ -1,10 +1,10 @@
-# 🚀 Mopcare Learning & Course Management System (LMS & CMS)
+# Mopcare Learning & Course Management System (LMS & CMS)
 
 Mopcare is a modern, microservices-based Learning Management System (LMS) and Course Management System (CMS) designed for scalable, enterprise-grade education platforms. Leveraging high-performance Go frameworks and cloud-native principles, Mopcare delivers secure, resilient, and performant learning experiences.
 
 ---
 
-## 🌟 Key Features
+## Key Features
 
 - Microservices architecture for scalability and maintainability
 - High-performance backend using Go Fiber and Gin
@@ -18,7 +18,7 @@ Mopcare is a modern, microservices-based Learning Management System (LMS) and Co
 
 ---
 
-## 🏗️ Architecture Overview
+## Architecture Overview
 
 ```
 ┌─────────────────────────────────────────────────────────────────┐
@@ -57,7 +57,7 @@ Mopcare is a modern, microservices-based Learning Management System (LMS) and Co
 
 ---
 
-## 🔐 Authentication & Security
+## Authentication & Security
 
 - Supabase-managed authentication with JWT and RBAC (Role-Based Access Control)
 - Environment variables to secure sensitive credentials
@@ -66,7 +66,7 @@ Mopcare is a modern, microservices-based Learning Management System (LMS) and Co
 
 ---
 
-## 📈 Observability & Performance
+## Observability & Performance
 
 - Real-time metrics via `/metrics` endpoint on API Gateway
 - Cache hit/miss statistics to optimize responsiveness
@@ -75,7 +75,7 @@ Mopcare is a modern, microservices-based Learning Management System (LMS) and Co
 
 ---
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Development
 
@@ -98,7 +98,7 @@ docker-compose up --build
 
 ---
 
-## 🔧 Configuration
+## Configuration
 
 Create a `.env` file with:
 
@@ -111,7 +111,7 @@ GATEWAY_PORT=9090
 
 ---
 
-## 📡 API Endpoints (Base URL: http://localhost:9090)
+## API Endpoints (Base URL: http://localhost:9090)
 
 | Category | Endpoint | Description |
 |----------|----------|-------------|
@@ -138,7 +138,7 @@ GATEWAY_PORT=9090
 
 ---
 
-## 🔗 Live Demo & Resources
+## Live Demo & Resources
 
 - **Live API:** https://mopcare-x0vw.onrender.com/
 - **Health Check:** `GET /health`
@@ -146,7 +146,7 @@ GATEWAY_PORT=9090
 
 ---
 
-## 🚀 Roadmap
+## Roadmap
 
 - Volunteer Management System integration for enhanced community engagement
 - Advanced analytics dashboard for admins and educators
@@ -155,6 +155,6 @@ GATEWAY_PORT=9090
 
 ---
 
-## 🤝 Contributing
+## Contributing
 
 Contributions are highly welcome! Please fork the repository, implement your changes, run tests, and submit a pull request.
